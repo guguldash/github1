@@ -1,0 +1,32 @@
+{% block body %}
+	    <table class="table table-striped" id="tbl_ch">
+		  <thead class="table-dark">
+			<tr>
+			  <th scope="col">Title</th>
+			  <th scope="col">Categories</th>
+			  <th scope="col">Publish Date</th>
+              <th scope="col">Price</th>
+              <th scope="col">AuthorName</th>
+			  <th scope="col">STATUS</th>
+			  <th scope="col" class="text-center">Actions</th>
+			</tr>
+		  </thead>		  
+		  <tbody>
+		  {% for item in books %}
+			<tr>
+			  <td>{{ item.title }}</td>
+              <td>{{ item.catagories_name }}</td>
+              <td>{{ item.publish_date }}</td>
+              <td>{{ item.price }}</td>
+              <td>{{ item.author_name }}</td>
+              <td>{{ item.status }}</td>						  
+			  
+		<td class="col-2">		  
+				<button type="button" class="btn btn-primary float-end mx-2" data-do="book.books.del/{{item._id}}"><i class="bi bi-trash"></i></button>
+			    <button type="button" class="btn btn-primary float-end mx-2" data-edit="{{item._id}}"><i class="bi bi-pencil-square"></i></button>
+		</td>
+			</tr>
+		  {% endfor %}
+		  </tbody>
+		</table>	
+{% endblock %}

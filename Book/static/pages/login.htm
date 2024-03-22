@@ -1,0 +1,38 @@
+{% extends "static/pages/_common/site_web.htm" %}
+
+{% block main %}
+<main class="container-full">
+<div id='x-main' class="container-fluid mt-5 p-3" style="min-height:550px">
+<div class="row">
+<div class="col-8"> 
+  <h3 class="card-title"></h3>
+ <!-- <img style="width:200px;" src="/static/img/spirulina-fnd.png"> -->
+</div>
+<div class="col-4"> 
+		<div class="card login-card m-4 bg-secondary text-light">
+	  <div class="card-body">
+		  <h5 class="card-title">Login</h5>		  
+		  
+			<div class="form-group">
+			  <label for="usernameInput">Username</label>
+			  <input type="text" class="form-control" id="inuserid" value="admin00@app001.org" name="userid" >
+			</div>
+			<div class="form-group mt-2">
+			  <label for="passwordInput">Password</label>
+			  <input type="password" class="form-control" id="inpwd" value="123" name="pwd">
+			</div>
+		    <!--<div class="mt-4 btn btn-primary" onclick="doLogIn();">Login</div>-->
+		    <div class="mt-4 btn btn-primary" onclick="doLogIn_web();">Login</div>
+			
+			
+
+		  
+		</div> 
+	  </div>  
+	
+  </div>
+</div>
+</div>
+
+</main>
+{% endblock %}	

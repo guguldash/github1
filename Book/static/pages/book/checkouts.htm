@@ -1,0 +1,40 @@
+{% extends "static/pages/_common/base.htm" %}
+
+{% block body %}
+<div id='x-main' class="container-full mt-5 p-3">
+    <div class="container-md">
+
+        <div class="row">
+            <div class="col-12 p-2">
+		<h3 class="float-start ps-2">BOOKs</h3>
+		<button type="button" class="btn btn-primary float-end mx-2" data-nav='book.book_det.new'><i class="bi bi-plus-square"></i></button>		
+		
+	</div>
+            <div id='x-books'>
+                <table class="table" id="tbl_books">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Title</th>
+                            <th scope="col">AuthorName</th>
+							 <th scope="col">status</th>
+							<th scope="col" class="text-right">Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for book in books %}
+                        <tr>
+                            <td>{{ book.title }}</td>
+                            <td>{{ book.status_name}}</td>
+                            <td>{{ book.author_name }}</td>
+                            
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

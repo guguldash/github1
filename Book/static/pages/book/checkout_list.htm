@@ -1,0 +1,30 @@
+{% block body %}
+	    <table class="table table-striped" id="tbl_ch">
+		  <thead class="table-dark">
+			<tr>
+			  <th scope="col">Title</th>
+              <th scope="col">AuthorName</th>
+			  <th scope="col">STATUS</th>
+			  <th scope="col" class="text-center">Actions</th>
+			</tr>
+		  </thead>		  
+		  <tbody>
+		  {% for item in books %}
+		  {% if item.status=="available" %}
+			<tr>
+			  <td>{{ item.title }}</td>
+              <td>{{ item.author_name }}</td>
+              <td>{{ item.status }}</td>						  
+			  
+		<td class="col-2">		  
+			    <button type="button" class="btn btn-primary float-end mx-2" data-do="/{{item._id}}/status" data-form="s_form">checkout<i class="bi bi-pencil-square"></i></button>
+		</td>
+			</tr>
+		  {% endif %}	
+		  {% endfor %}
+		  </tbody>
+		</table>
+<form method="post" id="s_form">
+		  <input type="hidden" class="form-control" placeholder="" value="available" name="status">
+</form>		
+{% endblock %}

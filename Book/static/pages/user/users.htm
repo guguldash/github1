@@ -1,0 +1,72 @@
+{% extends "static/pages/_common/user_base.htm" %}
+
+{% block body %}
+<div id='x-main' class="container-full mt-5 p-3">
+<div class="container-md">
+
+	<div class="row">
+	<div class="col-12 p-2">
+	<h3 class="float-start ps-2">Patientcheckout </h3>
+	<di v class="float-end px-2">
+		<select  type="text" id="author_id" class="form-select mx-2" style="width:250px;" onchange="setauthor(this)" required>            
+		<!-- <option selected value="CS">authors by book</option> -->
+	    </select>
+	</div>
+		
+	
+	<div class="float-end px-2">	
+		  <input type="hidden" id="txtcat" class="form-control"  placeholder="" value="{{catagories_id}}" name="catagories_id">
+		  <input type="hidden" class="form-control" id="txtcatagoriesname" placeholder="" value="{{catagories_name}}" name="catagories_name"> 
+		  <label class="form-label">Catagories</label>
+		  <select id="catagories_id" class="form-select mx-2" style="width:250px"; onchange="setcat(this)">
+			<option value="">All Cat</option>
+			<option value="F">F</option>
+			<option value="N">N</option>
+		  </select> 	  
+	</div>
+
+	</div>
+	</div>
+	
+	<div id='lstbook_hdr'>		
+	
+	
+
+		<div class="row">
+
+		<div class="col-12 m-0">
+
+		<table class="table table-hover">
+		  <thead>
+			<tr>
+			  <th scope="col">Title</th>
+              <th scope="col">Status</th>
+              <th scope="col">AuthorName</th>
+			</tr>
+		  </thead>
+		  <tbody>
+		{% for item in books %}
+			<tr>
+			  <td>{{ item.title }}</td>
+              <td>{{ item.author_name }}</td>						  
+		<!-- <td class="col-2">		   -->
+				<!-- <button type="button" class="btn btn-primary float-end mx-2" data-do="admin.book.del/{{item._id}}"><i class="bi bi-trash"></i></button>		   -->
+			    <!-- <button type="button" class="btn btn-primary float-end mx-2" data-nav="book.users"><i class="bi bi-pencil-square"></i></button> -->
+		<!-- </td> -->
+			</tr>
+		  {% endfor %}
+		  </tbody>
+		</table>
+        </div>
+        </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+		
+{% endblock %}
+
+
+
+

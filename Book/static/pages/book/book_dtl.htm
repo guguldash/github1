@@ -1,0 +1,105 @@
+{% extends "static/pages/_common/base.htm" %}
+
+{% block body %}
+<div id='x-main' class="container-full mt-5 p-3">
+<div class="container-md">
+<div class="row">
+<div class="col-12 p-2">
+	</div>
+{% if _id|length %}
+<div class="col-12 p-2">
+	<h3 class="float-start">EDIT BOOK</h3>
+	<button type="button" class="btn btn-primary float-end mx-2"  data-nav='book_hdr'>cancel</button>
+	<button id="action"  class="btn btn-primary float-end mx-2" data-do="{{_id}}" data-form="book_form">update</button>		
+</div>
+{% else %}
+
+
+<div class="col-12 p-2"> 
+	<h3 class="float-start">Add book</h3>
+	<button type="button" class="btn btn-primary float-end mx-2"  data-nav='book_hdr'>Cancel</button>		
+	<button class="btn btn-primary float-end mx-2" data-do="" data-form="book_form">Save</button>		
+</div> 
+{% endif %}
+	
+</div>
+<div id='x-challenge' class="container-float">
+<form method="post" id="book_form">
+
+	<div class="row">
+	<div class="col-3"> 
+		  <label for="exampleFormControlInput1">Title</label>
+		  <input type="text" class="form-control" id="exampleFormControlInput1" value="{{title}}" placeholder="" name="title">
+		</div>
+		
+	<div class="col-5"> 
+		  <label for="exampleFormControlInput1"> Book URL</label>
+		  <input type="text" class="form-control" id="exampleFormControlInput1" value="{{book_url}}" placeholder="" name="book_url">
+		</div>
+		
+	
+	<div class="col-3">
+		<label for="exampleFormControlInput1"  class="ms-2">Select Status:</label>
+		<select id="level" class="form-select mx-2" name="status">
+		  <option {% if status=='' %} selected  {% endif %}>Status</option>
+		  <option value="available" {% if status=='available' %} selected  {% endif %}>available</option>
+		  <option value="unavailable" {% if status=='unavailable' %} selected  {% endif %}>unavailable</option>
+		</select>
+		</div>	
+		
+		<div class="col-3">
+		  <label for="exampleFormControlInput1">Publish Date</label>
+		  <input type="date" class="form-control" id="exampleFormControlInput1" value="{{publish_date}}" placeholder="" name="publish_date">
+		</div>
+	<div class="col-3 mb-2">	
+		  <input type="hidden" id="txtcat" class="form-control" placeholder="" value="{{catagories_id}}" name="catagories_id">
+		  <input type="hidden" class="form-control" id="txtcatagoriesname" placeholder="" value="{{catagories_name}}" name="catagories_name"> 
+		  <label class="form-label">Catagories</label>
+		  <select id="catagories_id" class="form-select" onchange="setcat(this)">
+			<option value="">All CTG</option>
+			<option value="F">F</option>
+			<option value="N">N</option>
+		  </select> 	  
+	</div>
+
+		
+		
+		
+		<div class="col-3">
+		  <label for="exampleFormControlInput1">Price</label>
+		  <input type="number" class="form-control" id="exampleFormControlInput1" value="{{price}}" name="price">
+		</div>
+
+	<div class="col-3">	
+	  <input type="hidden" id="txtauthor" class="form-control" placeholder="" value="{{author_id}}" name="author_id">
+	  <input type="hidden" id="txtauthorname" class="form-control" placeholder="" value="{{author_name}}" name="author_name">			
+	  <label for="exampleFormControlInput1">AUTHOR</label>
+	  <select id="author_id" class="form-select"  onchange="setauthor(this)">
+	  </select> 	  
+    </div>
+		
+	</div>
+	
+	<div class="row my-3">
+		<div class="col-12">
+			<label for="exampleFormControlInput1" >Description</label>
+			<textarea class="form-control"  name="Desc">{{Desc}}</textarea>
+		</div>
+	</div>
+    </form>
+
+</div>
+</div>
+{% endblock %}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+		
+		

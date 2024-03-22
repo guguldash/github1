@@ -1,0 +1,143 @@
+import pytest
+from fastapi import FastAPI
+from fastapi.testclient import TestClient
+from dotenv import dotenv_values
+from pymongo import MongoClient
+
+
+app = FastAPI()
+config = dotenv_values(".env")
+app.mongodb_client = MongoClient(config["CONNECTION_STRING"])
+app.database = app.mongodb_client[config["DB_NAME"] + "_test"]
+app.database["books"].drop()
+
+from app.admin.book.api import admin_book_api as admin_book_apiroutes
+app.include_router(admin_book_apiroutes, tags=["books"], prefix="/api/admin/book")
+
+
+
+#TEST CASE FOR CREATE#
+
+def test_create_book(capsys):
+    with TestClient(app) as client:
+        with capsys.disabled():
+            print('Testing book create...')
+            response=client.post("/api/admin/book/",json={"title": "subha", "book_url": "f","publish_date": "12", "catagories":"fiction","price":"20","author_name":"smitha","Desc":"bookex"})
+            assert response.status_code == 201
+
+            body = response.json()
+            assert body.get("title") == "subha"
+            assert body.get("book_url") == "f"
+            assert body.get("publish_date") == "12"
+            assert body.get("catagories") == "fiction"
+            assert body.get("price") == "20"
+            assert body.get("author_name") == "smitha"
+            assert body.get("Desc") == "bookex"
+            assert "_id" in body
+            
+'''           
+
+#TEST CASE FOR LIST#        
+def test_get_patient():
+    with TestClient(app) as client:
+        get_patients_response = client.get("/api/therap/patient/")
+        assert get_patients_response.status_code == 200
+        
+        
+ #TEST CASE FOR DELETE#       
+def test_delete_patient():
+    with TestClient(app) as client:
+        new_patient = client.post("/api/therap/patient/",json={"name": "subha", "gender": "f","age": 12, "c_no":8588,"c_email":"subha@12","s_injury":"handf","pl_s":4,"cl_s":2,"Desc":"handy"}).json()
+        delete_patient_response = client.delete("/api/therap/patient/" + new_patient.get("_id"))
+        assert delete_patient_response.status_code == 204
+             
+def test_delete_patient_unexisting():
+    with TestClient(app) as client:
+        delete_patient_response = client.delete("/api/therap/patient/unexisting_id")
+        assert delete_patient_response.status_code == 404 
+        
+#TEST CASE FIND#       
+def test_get_patient():
+    with TestClient(app) as client:
+        new_patient = client.post("/api/therap/patient/", json={"name": "subha", "gender": "f","age": 12, "c_no":8588,"c_email":"subha@12","s_injury":"handf","pl_s":4,"cl_s":2,"Desc":"handy"}).json()
+
+        get_patient_response = client.get("/api/therap/patient/" + new_patient.get("_id"))
+        assert get_patient_response.status_code == 200
+        assert get_patient_response.json() == new_patient
+        
+def test_get_patient_unexisting():
+    with TestClient(app) as client:
+        get_patient_response = client.get("/api/therap/patient/unexisting_id")
+        assert get_patient_response.status_code == 404
+        
+        
+##TEST CASE FOR UPDATE#       
+def test_update_name():
+    with TestClient(app) as client:
+        new_patient = client.post("/api/therap/patient/", json={"name": "subha", "gender": "f","age": 12, "c_no":8588,"c_email":"subha@12","s_injury":"handf","pl_s":4,"cl_s":2,"Desc":"handy"}).json()
+        response = client.post("/api/therap/patient/" + new_patient.get("_id"), json={"name": "subha - Updated"})
+        assert response.status_code == 200
+        assert response.json().get("name") == "subha - Updated"
+        
+        
+def test_update_gender():
+    with TestClient(app) as client:
+        new_patient = client.post("/api/therap/patient/", json={"name": "subha", "gender": "f","age": 12, "c_no":8588,"c_email":"subha@12","s_injury":"handf","pl_s":4,"cl_s":2,"Desc":"handy"}).json()
+        response = client.post("/api/therap/patient/" + new_patient.get("_id"), json={"gender": "f - Updated"})
+        assert response.status_code == 200
+        assert response.json().get("gender") == "f - Updated"
+        
+        
+def test_update_age():
+    with TestClient(app) as client:
+        new_patient = client.post("/api/therap/patient/", json={"name": "subha", "gender": "f","age": 12, "c_no":8588,"c_email":"subha@12","s_injury":"handf","pl_s":4,"cl_s":2,"Desc":"handy"}).json()
+        response = client.post("/api/therap/patient/" + new_patient.get("_id"), json={"age": 13 })
+        assert response.status_code == 200
+        assert response.json().get("age") == 13 
+        
+             
+
+def test_update_c_no():
+    with TestClient(app) as client:
+        new_patient = client.post("/api/therap/patient/", json={"name": "subha", "gender": "f","age": 12, "c_no":8588,"c_email":"subha@12","s_injury":"handf","pl_s":4,"cl_s":2,"Desc":"handy"}).json()
+        response = client.post("/api/therap/patient/" + new_patient.get("_id"), json={"c_no": 858866 })
+        assert response.status_code == 200
+        assert response.json().get("c_no") == 858866
+      
+def test_update_c_email():
+    with TestClient(app) as client:
+        new_patient = client.post("/api/therap/patient/", json={"name": "subha", "gender": "f","age": 12, "c_no":8588,"c_email":"subha@12","s_injury":"handf","pl_s":4,"cl_s":2,"Desc":"handy"}).json()
+        response = client.post("/api/therap/patient/" + new_patient.get("_id"), json={"c_email": "subha@AB - Updated"})
+        assert response.status_code == 200
+        assert response.json().get("c_email") == "subha@AB - Updated"
+        
+def test_update_s_injury():
+    with TestClient(app) as client:
+        new_patient = client.post("/api/therap/patient/", json={"name": "subha", "gender": "f","age": 12, "c_no":8588,"c_email":"subha@12","s_injury":"handf","pl_s":4,"cl_s":2,"Desc":"handy"}).json()
+        response = client.post("/api/therap/patient/" + new_patient.get("_id"), json={"s_injury": "handf - Updated"})
+        assert response.status_code == 200
+        assert response.json().get("s_injury") == "handf - Updated"
+        
+def test_update_pl_s():
+    with TestClient(app) as client:
+        new_patient = client.post("/api/therap/patient/", json={"name": "subha", "gender": "f","age": 12, "c_no":8588,"c_email":"subha@12","s_injury":"handf","pl_s":4,"cl_s":2,"Desc":"handy"}).json()
+        response = client.post("/api/therap/patient/" + new_patient.get("_id"), json={"pl_s":  2})
+        assert response.status_code == 200
+        assert response.json().get("pl_s") == 2
+        
+def test_update_cl_s():
+    with TestClient(app) as client:
+        new_patient = client.post("/api/therap/patient/", json={"name": "subha", "gender": "f","age": 12, "c_no":8588,"c_email":"subha@12","s_injury":"handf","pl_s":4,"cl_s":2,"Desc":"handy"}).json()
+        response = client.post("/api/therap/patient/" + new_patient.get("_id"), json={"cl_s":  4})
+        assert response.status_code == 200
+        assert response.json().get("cl_s") == 4 
+        
+def test_update_Desc():
+    with TestClient(app) as client:
+        new_patient = client.post("/api/therap/patient/", json={"name": "subha", "gender": "f","age": 12, "c_no":8588,"c_email":"subha@12","s_injury":"handf","pl_s":4,"cl_s":2,"Desc":"handy"}).json()
+        response = client.post("/api/therap/patient/" + new_patient.get("_id"), json={"Desc": "handy - Updated"})
+        assert response.status_code == 200
+        assert response.json().get("Desc") == "handy - Updated"
+        
+ '''   
+          

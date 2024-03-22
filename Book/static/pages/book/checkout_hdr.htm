@@ -1,0 +1,39 @@
+{% extends "static/pages/_common/user_base.htm" %}
+
+{% block body %}
+<div id='x-main' class="container-full mt-5 p-3" style="min-height:550px">
+<div class="container-md">
+	<div class="row">
+	<div class="col-12 p-2">
+	<div class="float-end px-2">
+		<select  type="text" id="author_id" class="form-select mx-2" style="width:250px;" onchange="setauthor(this)" required>            
+	    </select>
+	</div>			
+		
+	<div class="float-end px-2">	
+		  <input type="hidden" id="txtcat" class="form-control"  placeholder="" value="{{catagories_id}}" name="catagories_id">
+		  <input type="hidden" class="form-control" id="txtcatagoriesname" placeholder="" value="{{catagories_name}}" name="catagories_name"> 
+		  <select id="catagories_id" class="form-select mx-2" style="width:250px"; onchange="setcat(this)">
+			<option value="">All Cat</option>
+			<option value="F">F</option>
+			<option value="N">N</option>
+		  </select> 	  
+	</div>
+	
+	
+    	
+	
+	<div id='lstuserbook_hdr'>		
+	</div>
+	</div>
+</div>	
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
