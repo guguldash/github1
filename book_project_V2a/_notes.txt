@@ -1,0 +1,30 @@
+#Manage combos - DONE
+#Send qry params to routes - DONE
+
+- login : include validation for success and failure.
+- book_list : include author combo filling and filtering - DONE
+			: enable edit - load data for id and then render the detail - DONE
+			: enable delete - get confirmation, delete and re-load (ideally keep the filter) - DONE
+			: enable card view for books - DONE (view selection not persisted in filter)
+- book_dtl  : load dynamic values for author combo - DONE
+			: enable save (ensure combo values for category/author are getting saved) - DONE			
+- auth_list : enable edit and delete - !!
+- auth_dtl 	: enable save - !!
+
+SIMPLIFY - and create a PPT tutorial.
+
+Enable views for mobile (like whatsapp)
+Enable canvas view for - teachBot, medScreen and poseTrack
+Enhance canvas view for flashCards, speakText, repeatText (and compare)
+
+https://github.com/Honatas/multi-select-webcomponent/blob/master/src/multi-select-webcomponent.ts
+
+For now, nunjucks macros are good enough
+Long term try creating webcomponents for all elements that we use
+- remove dependency on JQuery (use native JS functions)
+- remove dependency on Bootstrap - either use PureCSS or build native CSS
+- remove dependency on nunjucks - build/use a simple 2-way data binding library (Jquery.my?)
+- load JS files natively (without $.getScript)
+- build a custom table web-component to replace the one from datatable.net
+
+Teleprompter - https://codepen.io/startupsandcode/pen/MmXWaO

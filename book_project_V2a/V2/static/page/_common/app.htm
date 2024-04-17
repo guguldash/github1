@@ -1,0 +1,53 @@
+{% block topheader %}
+<div id='x-header'>
+	<nav class="navbar navbar-expand navbar-dark fixed-top bg-dark bg-gradient p-1" style="height:40px">
+	  <div class="container-fluid">
+		<p class="navbar-brand my-0 ms-2">Thinkar Library</p>
+		
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+		  <ul class="navbar-nav ms-auto">
+			<li class="nav-item">
+			  <a class="nav-link active" aria-current="page" data-nav='teach.topic_list'>TeachBotv2</a>
+			</li>
+			<li class="nav-item">
+			  <a class="nav-link active" aria-current="page" data-nav='admin.book_lst'>Books</a>
+			</li>
+			<li class="nav-item">
+			  <a class="nav-link active" aria-current="page" data-nav='admin.author_lst'>Authors</a>
+			</li>
+			
+			
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-gear"></i></a>
+				<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown03">
+				  <li><a class="dropdown-item" data-nav="common.login">Logout</a></li>
+
+
+				</ul>
+			</li>
+		  </ul>
+		</div>
+	  </div>
+	</nav>
+	{% block subheader %}
+	
+	{% endblock %}
+</div>	
+{% endblock %}
+
+{% block body %}
+
+{% endblock %}
+
+{% block footer %}
+<footer class="navbar navbar-expand navbar-dark fixed-bottom bg-secondary p-1" style="height:30px">
+  <div class="container-fluid1">
+	<p class="text-light mt-3">&copy; Powered by Thinkar Labs</p>
+  </div>
+</footer>
+{% endblock %}
+
+

@@ -1,0 +1,21 @@
+{% import  "static/js/app/macros.htm" as macros %}
+{% extends "static/page/_common/app.htm" %}
+
+{% block body %}
+<div id='x-main' class="container-full" style="margin-top:40px">
+
+  <div class="card-header" style="height:45px">
+	<h5 class="float-start ps-2">Author List</h5>
+
+	<div class="button btn btn-primary btn-sm float-end ms-2" data-nav='admin.author_dtl'><i class="bi bi-dpad"></i> Add</div>
+		
+	{{macros.x_search(id='searchAuthors')}}
+	
+  </div>
+
+  <div id="x-authors" class="py-0 ps-4 px-1" style="width:99.4%">
+
+  </div>  
+
+</div>
+{% endblock %}

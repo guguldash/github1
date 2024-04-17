@@ -1,0 +1,49 @@
+{% import  "static/js/app/macros.htm" as macros%}
+{% extends "static/page/_common/superadminbase.htm" %}
+
+{% block body %}
+<div id='x-main' class="container-full" style="margin-top:40px">
+  <div class="card-header" style="height:45px">
+	<h5 class="float-start ps-2">Book List</h5>
+
+	<div class="button btn btn-primary btn-sm float-end ms-2" onclick="_cp.on.Add()"><i class="bi bi-dpad"></i> Add</div>
+	<!-- <div id="btnAdd" class="button btn btn-primary btn-sm float-end ms-2" ><i class="bi bi-dpad"></i> Add</div> -->
+	{{macros.x_search(id='txtSearch')}}
+
+	{{macros.x_filter(prop='app',
+		val_id='app_id',val_name='app_name',
+		options=[['""','All-applications'],['app01', 'RehabHub'], ['app02', 'HospitalHub'], ['app03', 'NutritionHub'], ['app04', 'EducationHub']],
+		action='filter')
+	}}
+
+	{{macros.x_filter(prop='ngo',
+		val_id='ngo_id',val_name='ngo_name',		
+		options=[['""','All-ngos']],
+		action='filter')
+	}}
+	{{macros.x_filter(prop='org',
+		val_id='org_id',val_name='org_name',		
+		options=[['""','All-orgs']],
+		action='filter')
+	}}
+	
+	{{macros.x_filter(prop='role',
+		val_id='role_id',val_name='role_name',
+		options=[['""','All-role',{'id':'super_admin','txt':'super_admin'},{'id':'admin','txt':'admin'},{'id':'user','txt':'user'},{'id':'staff','txt':'staff'}]],
+		action='filter')
+	}}
+
+
+	{{macros.x_filter(prop='view',
+		val_id='view_id',val_name='view_name',
+		options=[['T','Table View'],['C','Card View']],
+		action='filter')
+	}}
+  </div>
+
+  <div id="x-users" class="py-0 ps-4 px-1" style="width:99.4%">
+
+  </div>  
+</div>
+
+{% endblock %}

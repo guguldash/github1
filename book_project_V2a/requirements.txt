@@ -1,0 +1,8 @@
+python-dotenv
+python-multipart
+pymongo[srv]
+fastapi
+uvicorn
+pytest
+httpx
+requests

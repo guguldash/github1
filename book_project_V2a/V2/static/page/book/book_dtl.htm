@@ -1,0 +1,67 @@
+{% import  "static/js/app/macros.htm" as macros %}
+{% extends "static/page/_common/app.htm" %}
+
+{% block body %}
+<div id='x-main' class="container-full" style="margin-top:40px">
+  <div class="card-header" style="height:45px">
+	<h5 class="float-start ps-2">Book Details</h5>
+	{{macros.x_button(title='Close',type='button',id='btnCancel', class='primary btn-sm float-end ms-2')}}
+	{{macros.x_button(title='Save',type='button',id='btnSave', class='success btn-sm float-end ms-2')}}		
+  </div>
+
+  <div class="card-body">
+
+	<form method="post" id="form_book">		  
+    <div id='x-challenge' class="container-float">
+	<div class="row">
+	
+	<div class="col-4">
+	  <label for="exampleFormControlInput1">Title</label>
+	  <input type="text" class="form-control" id="exampleFormControlInput1" value="{{Title}}" placeholder="title" name="Title">
+	</div>
+	
+	<div class="col-4">
+	  <label for="exampleFormControlInput1">Date</label>
+	  <input type="date" class="form-control" id="exampleFormControlInput1" value="{{Date}}" placeholder="Date" name="Date">
+	</div>
+			
+	<div class="col-4">
+	  <label for="exampleFormControlInput1">Price</label>
+	  <input type="text" class="form-control" id="exampleFormControlInput1" value="{{Price}}" placeholder="₹" name="Price">
+	</div>
+	
+	<div class="col-4">
+	{{macros.x_select(prop='author',label='Author',
+		val_id= author_id ,val_name= author_name ,		
+		options=[['""','Select an Author']],
+		action='select')
+	}}
+	</div>
+	
+	<div class="col-4">
+	{{macros.x_select(prop='category',label='Category',
+		val_id= category_id ,val_name= category_name ,
+		options=[['""','Select a Category'],['F','Fiction'],['N','Non-Fiction']],
+		action='select')
+	}}
+	</div>
+					
+	<div class="col-4">
+	  <label for="exampleFormControlInput1">BookUrl</label>
+	  <input type="text" class="form-control" id="exampleFormControlInput1" value="{{BookUrl}}" placeholder="Url" name="BookUrl">
+	</div>
+	
+	<div class="col-8">
+	  <label for="exampleFormControlInput1">Desc</label>
+	  <textarea type="text" class="form-control" id="exampleFormControlInput1" placeholder="Desc" name="Desc">{{Desc}}</textarea>
+	</div>
+			
+    </form>
+	
+	</div>
+	
+	</div>
+  </div>
+</div>
+{% endblock %}
+

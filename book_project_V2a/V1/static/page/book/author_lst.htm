@@ -1,0 +1,43 @@
+{% extends "static/page/_common/base.htm" %}
+
+{% block body %}
+
+<div id='x-main' class="container-full mt-5 p-3">
+<div class="container-md">
+
+	<div class="row">
+	<div class="col-12 p-2">
+		<h5 class="float-start ps-2">Author 🖋</h5>
+		<button type="button" class="btn btn-primary float-end mx-2" data-nav='app.author.new'><i class="bi bi-plus-square"></i></button>		
+		<div class="float-end ">
+		</div>
+	</div>
+	
+	
+	<div id='x-challenges'>
+		<table class="table" id="tbl_ch">
+		  <thead>
+			<tr>
+			  <th scope="col">Authorname</th>			  
+			  <th scope="col" class="text-center">Action</th>
+			</tr>
+		  </thead>
+		  <tbody>
+		  {% for item in authors %}
+			<tr>
+			  <td>{{item.author}}</td>
+			  
+			  <td class="col-2">
+				<button type="button" class="btn btn-primary float-end mx-2" data-do="app.author.del/{{item._id}}"><i class="bi bi-trash"></i></button>		  
+				<button type="button" class="btn btn-primary float-end mx-2" data-nav='app.author.edit/{{item._id}}'><i class="bi bi-pencil-square"></i></button>
+			  </td>
+			  
+			</tr>
+		  {% endfor %}
+		  </tbody>
+		</table>
+	</div>	
+	</div>
+</div>	
+</div>
+{% endblock %}

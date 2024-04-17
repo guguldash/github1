@@ -1,0 +1,86 @@
+{% extends "static/page/_common/base.htm" %}
+
+{% block body %}
+<div id='x-main' class="container-full mt-5 p-3">
+<div class="container-md">
+<div class="row">
+<div class="col-12 p-2">
+{% if _id|length %}
+
+	<h5 class="float-start">Edit Book 📗</h5>
+	<button type="button" class="btn btn-primary float-end mx-2" data-nav="app.book">Cancel</button>		
+	<button type="button" class="btn btn-primary float-end mx-2" data-do="app.book.save/{{_id}}" data-form="book_form">Update</button>
+	
+{% else %}
+
+	<h5 class="float-start">Add New Book 📗</h5>
+	<button type="button" class="btn btn-primary float-end mx-2" data-nav="app.book">Cancel</button>		
+	<button type="button" class="btn btn-primary float-end mx-2" data-do="app.book.save" data-form="book_form">Save</button>
+
+{% endif %}
+	
+</div>
+</div>
+
+<main class="container-full">
+<div class="row">
+<div class="col-3"> </div>
+<div class="col-3"></div>
+ 
+<div class="card-body">
+
+	<form method="post" id="book_form">		  
+    <div id='x-challenge' class="container-float">
+	<div class="row">
+	
+	<div class="col-4">
+	  <label for="exampleFormControlInput1">Title</label>
+	  <input type="text" class="form-control" id="exampleFormControlInput1" value="{{Title}}" placeholder="title" name="Title">
+	</div>
+	
+	<div class="col-4">
+	  <label for="exampleFormControlInput1">Date</label>
+	  <input type="date" class="form-control" id="exampleFormControlInput1" value="{{Date}}" placeholder="Date" name="Date">
+	</div>
+			
+	<div class="col-4">
+	  <label for="exampleFormControlInput1">Price</label>
+	  <input type="text" class="form-control" id="exampleFormControlInput1" value="{{Price}}" placeholder="₹" name="Price">
+	</div>
+	
+	<div class="col-4">
+	  <input type="hidden" id="txtcategory" class="form-control"  value="{{category_id}}" name="category_id">
+	  <input type="hidden" id="txtcategoryname" class="form-control"  value="{{category_name}}" name="category_name">
+	  <label for="exampleFormControlInput1">Category</label>
+	  <select id="category_id" class="form-select" onchange="setcategory(this)">
+		  <option value="">All Catagories</option>
+		  <option value="F">Fiction</option>
+		  <option value="N">Non-Fiction</option>
+	  </select>
+	</div>
+			
+	<div class="col-4">
+	  <input type="hidden" id="txtauthor" class="form-control" value="{{author_id}}" name="author_id">
+	  <input type="hidden" id="txtauthorname" class="form-control" value="{{author_name}}" name="author_name"> 
+	  <label for="exampleFormControlInput1">Author</label>
+	  <select id="author_id" class="form-select" onchange="setauthor(this)"></select>
+	</div>
+				
+	<div class="col-4">
+	  <label for="exampleFormControlInput1">BookUrl</label>
+	  <input type="text" class="form-control" id="exampleFormControlInput1" value="{{BookUrl}}" placeholder="Url" name="BookUrl">
+	</div>
+	
+	<div class="col-8">
+	  <label for="exampleFormControlInput1">Desc</label>
+	  <textarea type="text" class="form-control" id="exampleFormControlInput1" value="{{Desc}}" placeholder="Desc" name="Desc"></textarea>
+	</div>
+			
+    </form>
+	
+	</div>
+	
+	</div>
+</div>
+{% endblock %}
+

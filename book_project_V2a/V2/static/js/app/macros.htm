@@ -1,0 +1,53 @@
+{% macro x_input(title,type,id,val,m_name) %}
+<div class="form-group mt-2">
+  <label for="{{id}}">{{title}}</label>
+  <input type="{{type}}" class="form-control" id="{{id}}" value="{{val}}" name="{{m_name}}">
+</div>
+{% endmacro %}
+
+{%- macro x_button(id,type,class,title,action) -%}
+<button type="{{type}}" id="{{id}}" class="btn btn-{{class}}" onclick='{{action}}'>{{title}}</button>
+{%- endmacro -%}
+
+{% macro x_search(id) %}
+<div class="input-group input-group-sm float-end ms-2" style="width:200px">
+  <input id="{{id}}" type="text" class="form-control" aria-label="Search">
+  <span class="input-group-text"><i class="bi bi-search"></i></span>
+</div>
+{% endmacro %}
+
+{% macro x_filter(prop,val_id,val_name,options,action) %}
+<div class="float-end me-2">
+	<select id="sel_{{prop}}" class="form-select form-select-sm mx-2" style="min-width:150px;" data-change="{{action}}">
+	  {% for item in options %}
+	  <option value="{{item[0]}}">{{item[1]}}</option>
+	  {% endfor %}
+	</select>
+</div>   		
+{% endmacro %}
+
+{% macro x_select(prop,label,val_id,val_name,options,action) %}
+<div>
+	<input type="hidden" id="txt_{{prop}}_id" class="form-control" value="{{val_id}}" name="{{prop}}_id">
+	<input type="hidden" id="txt_{{prop}}_name" class="form-control" value="{{val_name}}" name="{{prop}}_name">
+	<label for="exampleFormControlInput1">{{label}}</label>
+	<select id="sel_{{prop}}" class="form-select" data-change="{{action}}">
+	  {% for item in options %}
+	  <option value="{{item[0]}}">{{item[1]}}</option>
+	  {% endfor %}
+	</select>
+</div>   		
+{% endmacro %}
+
+{% macro x_table(prop,label,val_id,val_name,options,action) %}
+<div>
+	<input type="hidden" id="txt_{{prop}}_id" class="form-control" value="{{val_id}}" name="{{prop}}_id">
+	<input type="hidden" id="txt_{{prop}}_name" class="form-control" value="{{val_name}}" name="{{prop}}_name">
+	<label for="exampleFormControlInput1">{{label}}</label>
+	<select id="sel_{{prop}}" class="form-select" data-change="{{action}}">
+	  {% for item in options %}
+	  <option value="{{item[0]}}">{{item[1]}}</option>
+	  {% endfor %}
+	</select>
+</div>   		
+{% endmacro %}

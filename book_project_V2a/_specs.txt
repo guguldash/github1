@@ -1,0 +1,68 @@
+All navigations are defined in the sitemap.js
+We only have JS files. Each of these files can in turn have views.
+
+1. Index.html and index.js
+This is the main entry point into the app. 
+- loads all CSS and external JS files (bootstrap, jquery, nunjucks, datatables)
+- loads index.js
+	For App00
+	- Clear sessionInfo and SessionStorage
+	- load login.js
+	For others
+	- If SessionStorage has sessionInfo - load main-page
+	- Else redirect to App00 -> login.js
+	For independent apps
+	- load login.js
+
+2. Login.JS
+- Render login.htm
+- Bind OnLogin to button and submit form.
+	OnLogin
+	- Post LoginForm to api (validate)
+	- If UID/PWD is valid - set sessionInfo and load main-page
+	- If UID/PWD is NOT valid - show message and stop
+
+3. List.JS
+cp.init()
+- Render list.htm
+- getAPI to load combo values
+- load static list to combos
+- call filter_list() (fill_list?)
+- Bind #btnAdd to onAdd (can do this in x-nav)
+- Bind #btnSearch to onSearchList (this is needed)
+(can we bind to x-action?)
+
+- We also have methods for 
+-- onAdd (call detail.js)
+-- onEdit (call detail.js for selected ID)
+-- onDelete call _app.del(ID) and call cp.init() again
+
+View are defined
+pageView => is a htm
+cardView
+tableView
+
+4. Detail.JS
+cp.init()
+- if id Call API for ID (for edit), then call displayPage()
+- else just call displayPage()
+cp.displayPage()
+- if (ID === '') - Add mode
+	- Render list.htm (without data)
+	- getAPI to load combo values
+	- load static list to combos
+	- Bind #btnSave to onSave
+	- Bind #btnCancel nav to List.JS
+
+- if (ID !== '') - Edit mode
+	getAPI for ID
+	- Render list.htm (with data)
+	- getAPI to load combo values
+	- load static list to combos
+	- Bind #btnSave to onSave
+	- Bind #btnCancel nav to List.JS
+
+	- init combo values with values from hidden inputs
+	- init combo values with values from hidden inputs
+	
+

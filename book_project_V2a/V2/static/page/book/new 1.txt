@@ -1,0 +1,68 @@
+alert("hi")
+xpage = new RubixPage()
+
+
+
+function init(){
+	xpage._api = '/api/author';
+	xpage._page = 'static/page/book/author_lst.htm';
+	xpage._table = `
+		{% import  "static/js/app/macros.htm" as macros %}
+		<table class="table table-sm table-striped" id="tbl_authors">
+		  <!-- <thead class="table-dark"> -->
+		  <thead>
+			<tr>
+			  <th>Author Name</th>
+			  <th class="text-center">Actions</th>
+			</tr>
+		  </thead>
+		  <tbody>
+		  {% for item in authors %}
+			<tr>
+			  <td class="col">{{item.author}}</td>
+			  <td class="text-center">
+				{{macros.x_button(title='<i class="bi bi-trash"></i> Delete',type='button',id='btnDel', class='danger btn-sm float-end mx-2')}}
+				{{macros.x_button(title='<i class="bi bi-pencil-square"></i> Edit',type='button',id='btnEdit', class='primary btn-sm float-end mx-2')}}
+			</td>
+			</tr>
+		  {% endfor %}
+		  </tbody>
+		</table>	
+	
+	
+	
+	`
+	_app.curr_page.render_page(xpage._page,'');	
+	_app.curr_page.filter_list();
+	_app.bind_event('#txtSearch','keyup',_cp.on.Search);
+
+	
+	$('#btnAdd').off().on('click', function () {
+		_app.load_page('admin.author_dtl');
+	});
+
+	$('#searchAuthors').on('keyup', function () {
+		_app.curr_page.table.search(this.value).draw();
+	});
+	cp.on.Edit = function(id){
+	_app.nav_page('admin.author_dtl',id)
+	return false;
+}
+
+
+
+}
+
+_app.curr_page.filter_list = function(){
+	_filter = ''
+
+	_app.get(xpage._api + _filter, function( data ) {	
+		_app.log(data);
+		_app.curr_page.render_view(xpage._table,data, 'x-authors');
+		_app.curr_page.table = _app.curr_page.display_table('#tbl_authors');
+	});	
+
+}
+init();
+AUTHOR_LIST.JS
+

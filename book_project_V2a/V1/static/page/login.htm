@@ -1,0 +1,41 @@
+{% extends "static/page/_common/site.htm" %}
+
+{% block main %}
+<main class="container-full" style="height: 100vh; background-image: url('https://t3.ftcdn.net/jpg/03/55/60/70/360_F_355607062_zYMS8jaz4SfoykpWz5oViRVKL32IabTP.jpg'); background-size: cover; background-position: center;">
+<div id='x-main' class="container-fluid mt-5" style="min-height:550px">
+<div class="row">
+<div class="col-12 col-md-6 col-xl-8">
+</div>
+<div class="col-12 col-md-6 col-xl-4">
+	<div class="card login-card m-4 bg-secondary text-light">
+	  <div class="card-body">
+		  <h5 class="card-title">Login</h5>		  
+		  <!-- <form method="post" id="login"> -->
+
+			<div class="form-group">
+			  <label for="usernameInput">Username</label>
+			  <input type="text" class="form-control" id="inuserid" placeholder="🙍 Username" name="userid"data-enter="doLogIn_web()">
+			</div>
+			<div class="form-group mt-2">
+			  <label for="passwordInput">Password</label>
+			  <input type="password" class="form-control" id="inpwd" placeholder="🔒 ••••••••" name="pwd" data-enter="doLogIn_web()">
+			</div>
+			<div class="form-group mt-4 form-check">
+				<input type="checkbox" class="form-check-input" id="rememberMeCheckbox">
+				<label class="form-check-label" for="rememberMeCheckbox">Remember Me</label>
+			</div>
+		    <!--<div class="mt-4 btn btn-primary" onclick="doLogIn();">Login</div>-->
+		    <!-- <div class="mt-4 btn btn-primary" data-do="login" data-form="login">Login</div> -->
+			<div class="mt-4 btn btn-primary" onclick="doLogIn_web();">Admin</div>
+			<div class="mt-4 btn btn-primary" onclick="doLogIn_web();">User</div>
+
+		  <!-- </form> -->
+		</div> 
+	  </div>  
+  </div>
+</div>
+</div>
+
+</main>
+{% endblock %}	
+

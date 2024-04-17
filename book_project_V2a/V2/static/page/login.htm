@@ -1,0 +1,38 @@
+{% import  "static/js/app/macros.htm" as macros %}
+{% extends "static/page/_common/site.htm" %}
+
+{% block main %}
+<!--<main class="container-full" style="height: 100vh; background-image: url('https://t3.ftcdn.net/jpg/03/55/60/70/360_F_355607062_zYMS8jaz4SfoykpWz5oViRVKL32IabTP.jpg'); background-size: cover; background-position: center;">-->
+<div id='x-main' class="container-fluid mt-5" style="min-height:550px">
+<div class="row">
+<div class="col-12 col-md-6 col-xl-8">
+
+<!--<my-picker id='myid' x-name='test-value'>
+	  <option value="1">Red</option>
+	  <option value="2">Blue</option>
+	  <option value="3">Green</option>
+	  <option value="4">Yellow</option>
+</my-picker>-->
+
+</div>
+
+<div class="col-12 col-md-6 col-xl-4">
+	<div class="card login-card m-4 bg-secondary text-light">
+	  <div class="card-body">
+		  <h5 class="card-title">Login1</h5>		  
+		  <form method="post" id="form_login">
+			{{macros.x_input(id='txtuser',type='text',title='Email Id',val='admin@book.app',m_name='userid')}}
+			{{macros.x_input(id='txtpwd',type='password',title='Password',val='admin123',m_name='pwd')}}
+			
+			{{macros.x_button(title='Login',type='button',id='btnLogin', class='primary btn-sm mt-4')}}
+			{{macros.x_button(title='Cancel',type='button',id='btnCancel', class='primary btn-sm mt-4')}}
+
+		  </form>
+		</div> 
+	  </div>
+  </div>
+</div>
+</div>
+
+</main>
+{% endblock %}	

@@ -1,0 +1,27 @@
+{% import  "static/js/app/macros.htm" as macros%}
+{% extends "static/page/_common/superadminbase.htm" %}
+
+{% block body %}
+<div id='x-main' class="container-full" style="margin-top:40px">
+  <div class="card-header" style="height:45px">
+	<h5 class="float-start ps-2">NGO List</h5>
+
+	<div class="button btn btn-primary btn-sm float-end ms-2" onclick="_cp.on.Add()"><i class="bi bi-dpad"></i> Add</div>
+	{{macros.x_search(id='txtSearch')}}
+	
+	
+	{{macros.x_filter(prop='app',
+		val_id='app_id',val_name='app_name',
+		options=[['""','All-applications'],['app01', 'RehabHub'], ['app02', 'HospitalHub'], ['app03', 'NutritionHub'], ['app04', 'EducationHub']],
+		action='filter')
+	}}
+
+  </div>
+
+  <div id="x-ngos" class="py-0 ps-4 px-1" style="width:99.4%">
+
+  </div>  
+</div>
+
+{% endblock %}
+

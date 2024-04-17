@@ -1,0 +1,35 @@
+{% block body %}
+
+<table class="table" id="tbl_ch">
+		  <!-- <thead class="table-dark"> -->
+		  <thead>
+			<tr>
+			  <th scope="col">Title</th>
+			  <th scope="col">start Date</th>
+			  <th scope="col">Price</th>
+			  <th scope="col">Author</th>
+			  <th scope="col">BookUrl</th>
+			  <th scope="col">Desc</th>
+			  <th scope="col">Category</th>
+			  <th scope="col" class="text-center">Action</th>
+			</tr>
+		  </thead>
+		  <tbody>
+		  {% for item in books %}
+			<tr>
+			  <td class="col">{{item.Title}}</td>
+			  <td class="col-2">{{item.Date}}</td>
+			  <td class="col">{{item.Price}}</td>
+			  <td class="col-2">{{item.author_name}}</td>
+			  <td class="col-2">{{item.BookUrl}}</td>
+			  <td class="col-2">{{item.Desc}}</td>
+			  <td class="col-2">{{item.category_name}}</td>
+			  <td class="col-2">
+				<button type="button" class="btn btn-primary float-end mx-2" data-do="app.book.del/{{item._id}}"><i class="bi bi-trash"></i></button>		  
+				<button type="button" class="btn btn-primary float-end mx-2" data-nav="app.book.edit/{{item._id}}"><i class="bi bi-pencil-square"></i></button>
+			</td>
+			</tr>
+		  {% endfor %}
+		  </tbody>
+		</table>
+{% endblock %}

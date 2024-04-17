@@ -1,0 +1,86 @@
+{% import  "static/js/app/macros.htm" as macros %}
+{% extends "static/page/_common/superadminbase.htm" %}
+
+{% block body %}
+<div id='x-main' class="container-full" style="margin-top:40px">
+  <div class="card-header" style="height:45px">
+	<h5 class="float-start ps-2">Book Details</h5>
+	{{macros.x_button(title='Close',type='button',id='btnCancel', class='primary btn-sm float-end ms-2')}}
+	{{macros.x_button(title='Save',type='button',id='btnSave', class='success btn-sm float-end ms-2')}}		
+  </div>
+
+  <div class="card-body">
+
+	<form method="post" id="form_book">		  
+    <div id='x-challenge' class="container-float">
+	<div class="row">
+	
+	<div class="col-3">
+	  <label for="exampleFormControlInput1">username</label>
+	  <input type="text" class="form-control" id="exampleFormControlInput1" value="{{display_name}}" placeholder="display_name" name="display_name">
+	</div>
+	
+	<div class="col-3">
+			<label for="exampleFormControlInput1">E-mail</label>
+			<input type="text" id="exampleFormControlInput1" class="form-control" value="{{email}}" placeholder="" name="email">			
+		</div>
+		
+	<div class="col-3">
+			<label for="exampleFormControlInput1">Ph No</label>
+			<input type="text" id="exampleFormControlInput1" class="form-control" value="{{phnnumber}}" placeholder="" name="phnnumber">
+		</div>
+		
+		<div class="col-3">
+		  <label for="exampleFormControlInput1">Password</label>
+		  <input type="password" class="form-control" id="exampleFormControlInput1" value="{{pwd}}" placeholder="*******" name="pwd">
+		</div>
+	
+	
+	
+	<div class="col-3">
+		{{macros.x_select(prop='ngo',label='ngo',
+			val_id= ngo_id ,val_name= ngo_name ,		
+			options=[['""','Select an ngo']],
+			action='select')
+	}}
+	</div>
+	
+	<div class="col-3">
+	{{ macros.x_select(prop='app', label='application',
+		val_id=app_id, val_name=app_name,
+		options=[['""', 'Select an application'], ['app01', 'RehabHub'], ['app02', 'HospitalHub'], ['app03', 'NutritionHub'], ['app04', 'EducationHub']],
+		action='select')
+	}}
+	</div>
+	
+	<div class="col-3">
+		{{macros.x_select(prop='org',label='org',
+			val_id= org_id ,val_name= org_name ,		
+			options=[['""','Select an ngo']],
+			action='select')
+	}}
+	</div>
+	
+	<div class="col-3">
+		{{macros.x_select(prop='role',label='role',
+			val_id= role_id ,val_name= role_name ,		
+			options=[['""','Select an role']],
+			action='select')
+	}}
+	</div>
+	
+	
+					
+	
+	
+	
+			
+    </form>
+	
+	</div>
+	
+	</div>
+  </div>
+</div>
+{% endblock %}
+

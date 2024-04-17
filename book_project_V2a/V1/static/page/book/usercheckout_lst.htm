@@ -1,0 +1,45 @@
+{% extends "static/page/_common/base_user.htm" %}
+
+{% block body %}
+<div id='x-main' class="container-full mt-5 p-3">
+<div class="container-md">
+
+    <div class="row">
+    <div class="col-12 p-2">
+        <h3 class="float-start ps-2">checkout</h3>
+    </div>
+
+        <div class="row">
+
+        <div class="col-12 m-0">
+
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Title</th>
+              <th scope="col">Authorname</th>
+              <th scope="col">Action</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+          {% for item in books %}              
+            <tr>
+              <td class="col-2">{{item.Title}}</td>
+              <td>{{item.author_name}}</td>
+              <td class="col-2">
+                <button type="button" class="checkout button" style="background-color: #4CAF50;">Checkout</button>      
+              </td>
+            </tr>
+          {% endfor %}   
+          </tbody>
+        </table>
+        </div>
+        </div>  
+
+    </div>
+            
+
+</div>
+</div>
+{% endblock %}

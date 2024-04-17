@@ -1,0 +1,45 @@
+{% extends "static/page/_common/base.htm" %}
+
+{% block body %}
+<div id='x-main' class="container-full mt-5 p-3">
+<div class="container-md">
+<div class="row">
+<div class="col-12 p-2">
+{% if _id|length %}
+	<h5 class="float-start">Edit Author️ 🖋</h5>
+	<button type="button" class="btn btn-primary float-end mx-2" data-nav="app.author">Cancel</button>		
+	<button type="button" class="btn btn-primary float-end mx-2" data-do="app.author.save/{{_id}}" data-form="author_form">Update</button>
+	
+{% else %}
+	<h5 class="float-start">Add New Author 🖋</h5>
+	<button type="button" class="btn btn-primary float-end mx-2" data-nav="app.author">Cancel</button>		
+	<button type="button" class="btn btn-primary float-end mx-2" data-do="app.author.save" data-form="author_form">Save</button>
+
+{% endif %}
+	
+</div>
+</div>
+
+<main class="container-full">
+<div class="row">
+<div class="col-3"> </div>
+<div class="col-3"></div>
+ 
+<div class="card-body">
+	<form method="post" id="author_form">
+		  
+    <div id='x-challenge' class="container-float">
+			
+	<div class="col-3">
+	  <label for="exampleFormControlInput1">Author name</label>
+	  <input type="text" class="form-control" id="exampleFormControlInput1" value="{{author}}" placeholder="Name" name="author">
+	</div>
+						
+    </form>
+	
+	</div>
+	
+</div>
+</div>
+{% endblock %}
+

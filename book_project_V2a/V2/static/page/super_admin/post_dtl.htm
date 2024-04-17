@@ -1,0 +1,52 @@
+{% import  "static/js/app/macros.htm" as macros %}
+{% extends "static/page/_common/superadminbase.htm" %}
+
+{% block body %}
+<div id='x-main' class="container-full" style="margin-top:40px">
+  <div class="card-header" style="height:45px">
+    <h5 class="float-start ps-2">post Details</h5>
+    {{macros.x_button(title='Close', type='button', id='btnCancel', class='primary btn-sm float-end ms-2')}}
+    {{macros.x_button(title='Save', type='button', id='btnSave', class='success btn-sm float-end ms-2')}}
+  </div>
+
+  <div class="card-body">
+    <form method="post" id="post_form">
+      <div class="row">
+        <div class="col-3">
+          {{macros.x_select(prop='post', label='post',
+            val_id=post_id, val_name=post_name,
+            options=[['""','Select a post'],['webpage','webpage'],['youtube','youtube']],
+            action='select')
+          }}
+        </div>
+        
+        <div class="col-4">
+          {{macros.x_input(title='post_url', type='text', id='txturl', val=post_url, m_name='post_url')}}
+        </div>
+        
+        <div class="col-4">
+          {{macros.x_button(title='get', type='button', id='btnget', class='success btn-sm float-end ms-2')}}
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-5">
+          <label for="exampleFormControlInput1" class="form-label">Title</label>
+          <input type="text" class="form-control" id="txttitle" value="{{title}}" placeholder="" name="title" readonly>             
+        </div>
+        
+        <div class="col-5">
+          <label for="exampleFormControlInput1" class="form-label">Date</label>
+          <input type="text" class="form-control" id="txtdate" value="{{detail}}" placeholder="" name="detail" readonly>             
+        </div>
+        
+        <div class="col-7">
+          <label for="exampleFormControlInput1">Description</label>
+          <input type="text" class="form-control" id="txtdesc" value="{{description}}" placeholder="" name="description" readonly></input>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
